@@ -64,7 +64,17 @@ namespace Catalog.API.Repositories
                                            .ReplaceOneAsync(filter: g => g.Id == product.Id, replacement: product);
 
             return updateResult.IsAcknowledged
-                    && updateResult.ModifiedCount > 0;
+                && updateResult.ModifiedCount > 0;
+        }
+
+        public async Task<bool> DeleteProduct(string id)
+        {
+            var deleteResult = await _context
+                                        .Products
+                                        .DeleteOneAsync(filter: g => g.Id == id);
+
+            return deleteResult.IsAcknowledged
+                && deleteResult.DeletedCount > 0;
         }
     }
 }
