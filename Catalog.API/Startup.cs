@@ -1,3 +1,5 @@
+using Catalog.API.Data;
+using Catalog.API.Data.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +22,7 @@ namespace Catalog.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddScoped<ICatalogContext, CatalogContext>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
