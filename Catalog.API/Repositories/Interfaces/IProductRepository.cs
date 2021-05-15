@@ -8,5 +8,6 @@ namespace Catalog.API.Repositories.Interfaces
     {
         Task<IEnumerable<Product>> GetProducts();
         Task<Product> GetProduct(string id);
+        Task<IEnumerable<Product>> GetProductByCategory(string categoryName);
     }
 }
