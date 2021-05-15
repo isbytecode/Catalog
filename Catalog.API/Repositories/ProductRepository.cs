@@ -56,5 +56,15 @@ namespace Catalog.API.Repositories
         {
             await _context.Products.InsertOneAsync(product);
         }
+
+        public async Task<bool> UpdateProduct(Product product)
+        {
+            var updateResult = await _context
+                                           .Products
+                                           .ReplaceOneAsync(filter: g => g.Id == product.Id, replacement: product);
+
+            return updateResult.IsAcknowledged
+                    && updateResult.ModifiedCount > 0;
+        }
     }
 }

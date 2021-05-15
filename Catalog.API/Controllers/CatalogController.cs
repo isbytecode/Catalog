@@ -78,5 +78,12 @@ namespace Catalog.API.Controllers
 
             return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
         }
+
+        [HttpPut]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> UpdateProduct([FromBody] Product product)
+        {
+            return Ok(await _repository.UpdateProduct(product));
+        }
     }
 }
