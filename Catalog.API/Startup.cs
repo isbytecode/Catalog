@@ -1,5 +1,7 @@
 using Catalog.API.Data;
 using Catalog.API.Data.Interfaces;
+using Catalog.API.Repositories;
+using Catalog.API.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +25,7 @@ namespace Catalog.API
         {
 
             services.AddScoped<ICatalogContext, CatalogContext>();
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
