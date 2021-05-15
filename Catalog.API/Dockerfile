@@ -6,11 +6,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
-COPY ["Services/Catalog/Catalog.API/Catalog.API.csproj", "Services/Catalog/Catalog.API/"]
-COPY ["BuildingBlocks/Common.Logging/Common.Logging.csproj", "BuildingBlocks/Common.Logging/"]
-RUN dotnet restore "Services/Catalog/Catalog.API/Catalog.API.csproj"
+COPY ["Catalog.API/Catalog.API.csproj", "Catalog.API/"]
+RUN dotnet restore "/src/Catalog.API/Catalog.API.csproj"
 COPY . .
-WORKDIR "/src/Services/Catalog/Catalog.API"
+WORKDIR "/src/Catalog.API"
 RUN dotnet build "Catalog.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
