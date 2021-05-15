@@ -51,5 +51,10 @@ namespace Catalog.API.Repositories
                             .Find(filter)
                             .ToListAsync();
         }
+
+        public async Task CreateProduct(Product product)
+        {
+            await _context.Products.InsertOneAsync(product);
+        }
     }
 }
